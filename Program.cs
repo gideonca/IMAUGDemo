@@ -8,17 +8,18 @@ class Program
 {
 	static async Task Main(string[] args)
 	{
-		Console.WriteLine("What do you want to ask:");
+		Console.WriteLine("What can I help you with today?\r\n");
 	    string prompt = Console.ReadLine() ?? "";
 
-        while (prompt.ToLower() != "exit")
+        while (prompt.ToLower() != "exit") // loop until user types 'exit', allowing multiple queries and more conversational
         {
+            // Localhost, you can set this up to point to your Azure AI or OpenAI endpoint if you prefer
             var apiUrl = "http://localhost:1234/v1/chat/completions";
             var requestBody = new
             {
                 model = "llama3",
                 messages = new[] {
-                    new { role = "system", content = "You are a helpful assistant that takes natural language and converts it to SQL queries." }, // initial/system prompt
+                    new { role = "system", content = "You are a helpful assistant that takes natural language and converts it to programming code snippets." }, // initial/system prompt
                     new { role = "user", content = prompt }
                 }
             };
